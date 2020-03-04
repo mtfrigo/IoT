@@ -11,7 +11,6 @@ try:
     while 1:
         for dc in range(0, 20, 5):
             p.ChangeDutyCycle(dc)
-            print(dc)
             time.sleep(0.1)
         for dc in range(20, -1, -5):
             p.ChangeDutyCycle(dc)

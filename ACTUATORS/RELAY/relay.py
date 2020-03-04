@@ -4,8 +4,6 @@ import RPi.GPIO as GPIO
 import time
 
 class RELAY(object):
-
-
 	relayPin = 14 # relay connected to D27
 
 	def __init__(self, relayPin=14): 
