@@ -16,7 +16,6 @@ class FileHandler(object):
     def __init__(self, filepath):
         self.file = None
         self.encoded_filename = filepath
-
     
     def open_file(self):
         self.file = open("encoded_image.txt","w+")
@@ -46,7 +45,7 @@ class FileHandler(object):
 
     def receive_packet(self, parsed_message):
 
-        print(parsed_message)
+        #print(parsed_message)
         if(parsed_message['pos'] == 0):
             print("First packet")
             self.open_file()
@@ -54,8 +53,8 @@ class FileHandler(object):
         print (parsed_message['pos'])
         print (parsed_message['size'])
         self.file.write(parsed_message['data'])
-
-        if(parsed_message['pos'] == parsed_message['size']):
+        
+        if(parsed_message['pos'] == (parsed_message['size'] - 1)):
             self.close_file()
             print("Converting base64 to jpg...")
             self.convert_base64_jpg()
@@ -64,14 +63,12 @@ class FileHandler(object):
             subprocess.call(["sudo fbi -d /dev/fb1 -T 1 -noverbose -a some_image.jpg"], shell=True)
             print("Done!")
 
-            
-
 def main():
     
     file_handler = FileHandler("encoded_image.txt")
     id = "id_%s" % (datetime.utcnow().strftime('%H_%M_%S'))
     
-    client = mqttClient("129.69.209.78", 1883, id, file_handler)
+    client = mqttClient("129.69.209.92", 1883, id, file_handler)
     client.connect()
     client.subscribe("image")
     client.start()

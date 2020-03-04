@@ -10,8 +10,6 @@ def movement(channel):
 
 
 try: 
-
-    print("bom dia")
     GPIO.add_event_detect(SENSOR_PIN, GPIO.RISING, callback = movement)
 
     while True:

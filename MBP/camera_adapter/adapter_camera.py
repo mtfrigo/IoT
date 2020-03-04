@@ -16,12 +16,9 @@ PORT = 1883
 CONNECTIONS_FILE = "connections.txt"
 TOPIC_ACTION = "action/%s/#"
 ACTION_LOG_FILE = "actions.txt"
-
-
 ############################
 
 camera = None
-
 
 class MQTTClient(object):
 
