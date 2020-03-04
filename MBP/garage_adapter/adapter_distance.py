@@ -22,7 +22,6 @@ esp = None
 def clean(*args):
     esp.turnOff()
 
-
 def main(argv):
 
     for sig in (SIGABRT, SIGILL, SIGINT, SIGSEGV, SIGTERM):

@@ -6,8 +6,6 @@ class Http(object):
 
         URL = "http://"+str(ip)+":"+str(port)+"/"+str(api)
 
-        #data = '{"ip": "'+self.broker_ip+'", "topic": "'+self.topic+'","status": "'+1+'"}"'
-
         r = requests.post(url = URL, data = data) 
 
         # extracting response text  
