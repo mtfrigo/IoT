@@ -1,6 +1,8 @@
 import paho.mqtt.client as mqtt
 from datetime import datetime
 import json
+import base64
+import subprocess
 
 ############################
 # MQTT Client
@@ -12,7 +14,8 @@ class mqttClient(object):
 
    lastMessage = None
 
-   file_handler = None
+   encoded_filename = "encoded_image.txt"
+   decoded_image_file = 'some_image.jpg'
 
    def __init__(self, hostname, port, clientid, file_handler):
       self.hostname = hostname
@@ -37,7 +40,9 @@ class mqttClient(object):
 
    # --- Callback when a message has been received on the subscribed topic
    def on_message(self, client, userdata, message):
-      # --- Placeholder
+      parsed_json = json.loads(message.payload)
+      
+      # --- Placeholderz
       self.file_handler.receive_packet(parsed_json)
 
    def setLastMessage(self, message):

@@ -19,7 +19,7 @@ class ESP12e_Push(object):
     httpClient = None
 
     # --- Placeholder
-    esp_ip = "10.42.0.156"
+    esp_ip = "129.69.209.118"
 
 
     def __init__(self, esp_ip, broker_ip, broker_port, topic):
@@ -53,7 +53,7 @@ class ESP12e_Push(object):
     def turnOff(self):
         self.sendStatus(0)
 
-    def turnOn(self)
+    def turnOn(self):
         self.sendStatus(1)
 
     def clean(*args):

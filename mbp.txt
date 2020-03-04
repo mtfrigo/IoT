@@ -1,0 +1,35 @@
+how a python script is called from platform
+"[{\"name\":\"sensor\",\"value\":\"light\"}]"
+
+connection file
+sensor/5ddcf4726d7b9c0dc6b5b5ed = 129.69.185.184
+
+# MBP Setup on TPL Computer
+
+## Environment
+
+Setup ssh is needed before you can deploy devices to the mbp, so start generating the ssh (needed just in case of first run)
+
+'''
+ssh-keygen -m PEM -t rsa
+'''
+
+then copy the ssh id to all devices you want to deploy by running the following command
+
+'''
+ssh-copy-id host@ip
+'''
+
+where host = host name (usually pi case the device is a raspi, for example)
+
+and ip = device ip (e.g. 129.69.209.121)
+
+in case the above command does not work you can simply copy the ida_rsa.pub content from ~/.ssh/ folder of the computer  and paste to ~/.ssh/authorized_keys
+
+Not sure if the ssh-keygen need to be done into the device in case it does not have the .ssh folder before copying it
+
+## MBP Install
+
+Clone and Run install shell script
+
+## MBP Setup

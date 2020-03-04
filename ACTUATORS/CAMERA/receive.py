@@ -18,8 +18,11 @@ class FileHandler(object):
         self.encoded_filename = filepath
 
     
+    def open_file(self):
+        self.file = open("encoded_image.txt","w+")
+
     def write_file(self):
-        self.file = open(self.encoded_filename,"w+")
+            self.file = open(self.encoded_filename,"w+")
 
     def read_file(self):
         content = ""
@@ -37,20 +40,22 @@ class FileHandler(object):
 
     def convert_base64_jpg(self):
         imgdata = base64.b64decode(self.read_file())
-        filename = decoded_image_file  # I assume you have a way of picking unique filenames
+        filename = self.decoded_image_file  # I assume you have a way of picking unique filenames
         with open(filename, 'wb') as f:
             f.write(imgdata)
 
-    def receive_packet(parsed_message):
-        if(receive_packet['pos'] == 0):
+    def receive_packet(self, parsed_message):
+
+        print(parsed_message)
+        if(parsed_message['pos'] == 0):
             print("First packet")
             self.open_file()
         
-        print (receive_packet['pos'])
-        print (receive_packet['size'])
-        self.file.write(receive_packet['data'])
+        print (parsed_message['pos'])
+        print (parsed_message['size'])
+        self.file.write(parsed_message['data'])
 
-        if(receive_packet['pos'] == receive_packet['size']):
+        if(parsed_message['pos'] == parsed_message['size']):
             self.close_file()
             print("Converting base64 to jpg...")
             self.convert_base64_jpg()
@@ -58,6 +63,7 @@ class FileHandler(object):
             #self.script_process = Popen(['python2', 'image.py', 'image.jpg'], stdout=PIPE, bufsize=0)
             subprocess.call(["sudo fbi -d /dev/fb1 -T 1 -noverbose -a some_image.jpg"], shell=True)
             print("Done!")
+
             
 
 def main():
@@ -65,7 +71,7 @@ def main():
     file_handler = FileHandler("encoded_image.txt")
     id = "id_%s" % (datetime.utcnow().strftime('%H_%M_%S'))
     
-    client = mqttClient("localhost", 1883, id)
+    client = mqttClient("129.69.209.78", 1883, id, file_handler)
     client.connect()
     client.subscribe("image")
     client.start()

@@ -15,3 +15,4 @@ def takePic(name):
         pass
     finally:
         camera.close()
+        print("picture taken")
