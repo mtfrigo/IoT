@@ -52,7 +52,6 @@ class MQTTClient(object):
         self.client.subscribe(topic)
 
     def cameraAction(self):
-
         image = 'image.jpg'
         self.camera.takePicture(image)
         encoded = self.camera.convertImageToBase64(image)
