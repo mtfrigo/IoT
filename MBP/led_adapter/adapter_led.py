@@ -59,7 +59,6 @@ class MQTTClient(object):
         #print(type(message['data']))
         data_parsed = ast.literal_eval(message['data'])
         color = data_parsed['color']
-        print(data_parsed)
         if color == "RED":
             self.led.setRed()
         elif color == "GREEN":
