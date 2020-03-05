@@ -25,6 +25,8 @@ The second step is configure the IDE to use the ESP.
 4. If everything is installed properly then you should be able to see the newly installed boards under tools -> board menu. Select **NodeMCU 1.0 (ESP-12E Module)**.
 5. Clicking in **Tools** the configuration should be as shown in the screenshot.
 
+[Config](config.png)
+
 More information can be found [here](https://create.arduino.cc/projecthub/najad/using-arduino-ide-to-program-nodemcu-33e899).
 
 
