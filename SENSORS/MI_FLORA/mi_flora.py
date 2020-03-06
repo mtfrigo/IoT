@@ -47,8 +47,6 @@ def poll(mac):
     values['conductivity'] = poller.parameter_value(MI_CONDUCTIVITY)
     values['battery'] = poller.parameter_value(MI_BATTERY)
 
-    
-
     print('Done')
 
     return values
